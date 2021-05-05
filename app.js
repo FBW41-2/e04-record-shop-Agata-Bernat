@@ -20,10 +20,13 @@ const app = express();
 app.use(logger("dev"));
 
 /**CONNECT TO DB */
+const dbUser = process.env.DB_USER
+const dbPassword = process.env.DB_PASSWORD
+const dbURL = process.env.DB_URL
+const localDbURI = "mongodb://localhost:27017/record-shop"
+const atlasURI = `mongodb+srv://${dbUser}:${dbPassword}@${dbURL}`
 mongoose.connect(
-    process.env.NODE_ENV == 'test' ?
-        'mongodb://localhost:27017/record-shop' :
-        `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_URL}`,
+        process.env.NODE_ENV == 'autograding' ? localDbURI : atlasURI,
     {
         useNewUrlParser: true,
         useCreateIndex: true,

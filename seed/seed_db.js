@@ -1,8 +1,8 @@
 var faker = require("faker");
 const mongoose = require("mongoose");
 const User = require("../models/User");
-
-console.log("I shall seed");
+const Record = require("../models/Record");
+require('dotenv').config()
 
 (async function() {
   /**CONNECT TO DB */
